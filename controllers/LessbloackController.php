@@ -30,7 +30,7 @@ class lessbloackController extends lessbloackModel
             $originalData = $this->getDetails($_GET["id"]);
 
             // Check if the new data is different from the original data
-            if ($_POST["verslag"] == $originalData['verslag']) {
+            if ($_POST["report"] == $originalData['report']) {
                 // No changes made, send an error message
                 header("Location: index.php?message=No changes made.");
                 // Exit to prevent further execution
@@ -39,21 +39,24 @@ class lessbloackController extends lessbloackModel
 
 
             // Call the edit function and handle the result
-            $result = $this->edit($_POST["verslag"], $_GET["id"]);
-            $reduceLessons = $this->reduceLessons($originalData['leerling_id']);
+            $result = $this->edit($_POST["report"], $_GET["id"]);
+            $reduceLessons = $this->reduceLessons($originalData['student_id']);
             if ($result && $reduceLessons) {
                 // Indien succesvol, omleiding met succesbericht
                 header("Location: index.php?message=Succesvol bijgewerkt");
-                exit(); // Sluit af om verdere uitvoering te voorkomen
+                  // Exit to prevent further execution
+                exit(); 
             } else {
                 // Indien niet succesvol, redirect met foutmelding
                 header("Location: index.php?message=Er is een fout opgetreden bij het bijwerken.");
-                exit(); // Sluit af om verdere uitvoering te voorkomen
+                  // Exit to prevent further execution
+                exit(); 
             }
         } else {
-            // Als ID niet is ingesteld of niet bestaat, wordt u omgeleid met een foutmelding
+          // If ID is not set or does not exist, you will be redirected with an error
             header("Location: index.php?message=De id is niet gevonden.");
-            exit(); // Sluit af om verdere uitvoering te voorkomen
+              // Exit to prevent further execution
+            exit();
         }
     }
 

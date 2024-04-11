@@ -4,7 +4,7 @@ class Database
 {
     //Database connection elements
     private $servername = 'localhost';
-    private $dbname = 'smartdriver';
+    private $dbname = 'drivesmartt';
     private $email = 'root';
     private $password = 'root';
     //Connect to the database

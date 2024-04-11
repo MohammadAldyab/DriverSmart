@@ -1,7 +1,6 @@
 <?php
 require_once("views/head/head.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

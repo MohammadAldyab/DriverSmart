@@ -2,13 +2,13 @@
 require_once("../head/head.php");
 require "../../controllers/StrippenkaartController.php";
 
-$strippenkaart = new strippenkaartController();
+$stampcard = new strippenkaartController();
 $errors = [];
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // When the form has been submitted
     // Run the create method and check if the order was added
-    $carsCreated = $strippenkaart->create($_POST["student_id"], $_POST["aantal_lessen"]);
+    $carsCreated = $stampcard->create($_POST["student_id"], $_POST["amount_lessons"]);
     // Check if the order was added successfully
     if ($carsCreated) {
         // If the order is added, redirect the user to the index page
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "<div class='alert alert-danger' role='alert'>Something went wrong when adding the strip cards</div>";
     }
 }
-$student = $strippenkaart->getStudent();
+$student = $stampcard->getStudent();
 
 ?>
 
@@ -47,12 +47,12 @@ $student = $strippenkaart->getStudent();
             // get Student name page
             foreach ($student as $row) : ?>
 
-                <option value="<?= $row->id ?>"><?= $row->naam ?></option>
+                <option value="<?= $row->id ?>"><?= $row->name ?></option>
                 <!--get student's first name -->
             <?php endforeach ?>
         </select>
         <label for="classes">Choose a number of lessons:</label><br>
-        <input type="text" id="aantal_lessen" class="fadeIn second" name="aantal_lessen" value="<?= $row->aantallessen ?>"><br>
+        <input type="text" id="amount_lessons" class="fadeIn second" name="amount_lessons" value="<?= $row->amount_lessons ?>"><br>
 
 
         </select>

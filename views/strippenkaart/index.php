@@ -1,10 +1,10 @@
 <?php
 require_once("../head/head.php");
 
-require "../../controllers/StrippenkaartController.php";
+require "../../controllers/strippenkaartController.php";
 require "../../controllers/lessbloackController.php";
-$strippenkaartController = new strippenkaartController();
-$strippenkaart = $strippenkaartController->get();
+$stampcardController = new strippenkaartController();
+$stampcard = $stampcardController->get();
 
 
 
@@ -24,7 +24,7 @@ $strippenkaart = $strippenkaartController->get();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="../../static/js/index.js"></script>
   <link rel="stylesheet" href="../../static/css/index.css">
-  <title>strippenkaart</title>
+  <title>stampcard</title>
 </head>
 
 <body>
@@ -48,13 +48,13 @@ $strippenkaart = $strippenkaartController->get();
           </tr>
         </thead>
         <tbody>
-          <?php if (is_array($strippenkaart)) : ?>
-            <?php foreach ($strippenkaart as $row) : ?>
+          <?php if (is_array($stampcard)) : ?>
+            <?php foreach ($stampcard as $row) : ?>
               <tr>
-                <?php $result = $row->aantal_lessen +  $row->resterende_lessen ?>
+                <?php $result = $row->amount_lessons + $row->remaining_lessons ?>
                 <td><?= $row->student_id ?></td>
-                <td><?= $row->aantal_lessen ?></td>
-                <td><?= $row->resterende_lessen ?></td>
+                <td><?= $row->amount_lessons ?></td>
+                <td><?= $row->remaining_lessons ?></td>
                 <td><?= $result ?></td>
                 <td>
                   <form action="delete.php?id=<?= $row->id ?>" onsubmit="return confirm('Are you sure you want to remove?');" method="post">
@@ -78,7 +78,7 @@ $strippenkaart = $strippenkaartController->get();
 
         </tbody>
         <div class="row justify-content-end mb-3">
-          <div class="col-auto">
+          <div class="col-vehicle">
             <a href="create.php">
               <button type="submit" id="button" class="btn btn-warning">Create</button>
             </a>

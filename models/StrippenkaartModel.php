@@ -2,7 +2,7 @@
 
 require_once "../../cores/Database.php";
 
-class strippenkaartModel extends Database
+class stampcardModel extends Database
 {
     // Get all the strip card
     protected function index()
@@ -11,10 +11,10 @@ class strippenkaartModel extends Database
         $connection = $this->connect();
         // Prepare the SQL query
         $stmt = $connection->prepare("
-        SELECT strippenkaart.id, strippenkaart.aantal_lessen, strippenkaart.resterende_lessen,
-         leerling.naam AS student_id FROM strippenkaart AS strippenkaart
-           LEFT JOIN leerling AS leerling ON strippenkaart.student_id = leerling.id
-           WHERE status = 1
+        SELECT stampcard.id, stampcard.amount_lessons, stampcard.remaining_lessons,
+         student.name AS student_id FROM stampcard AS stampcard
+           LEFT JOIN student AS student ON stampcard.student_id = student.id
+           
           
            ;
 
@@ -38,7 +38,7 @@ class strippenkaartModel extends Database
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query
-        $stmt = $connection->prepare("SELECT * FROM strippenkaart WHERE id = ? ");
+        $stmt = $connection->prepare("SELECT * FROM stampcard WHERE id = ? ");
         // Execute the query
         $stmt->execute([$id]);
         // Check if any rows were found
@@ -60,7 +60,7 @@ class strippenkaartModel extends Database
             // Connect to the database
             $connection = $this->connect();
             // Prepare the SQL query
-            $stmt = $connection->prepare("UPDATE strippenkaart SET status = 0 WHERE id = ?");
+            $stmt = $connection->prepare("DELETE * FROM stampcard  WHERE id = ?");
             // Execute the query
             $stmt->execute([$id]);
 
@@ -85,7 +85,7 @@ class strippenkaartModel extends Database
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query
-        $stmt = $connection->prepare("SELECT * From leerling");
+        $stmt = $connection->prepare("SELECT * From student");
         // Execute the query
         $stmt->execute();
         // Check if any rows were found
@@ -100,16 +100,16 @@ class strippenkaartModel extends Database
 
 
     // Add strip card
-    protected function add($student_id, $aantal_lessen)
+    protected function add($student_id, $amount_lessons)
     {
         // Connect to the database
         $connection = $this->connect();
 
         // Prepare the SQL query
-        $stmt = $connection->prepare("INSERT INTO  strippenkaart (student_id, aantal_lessen,resterende_lessen,status) VALUES (?, ?,0,1)");
+        $stmt = $connection->prepare("INSERT INTO  stampcard (student_id, amount_lessons,remaining_lessons) VALUES (?, ?,0)");
 
         // Execute the query
-        $stmt->execute([$student_id, $aantal_lessen]);
+        $stmt->execute([$student_id, $amount_lessons]);
 
         // Check if the query was executed successfully
         return $stmt->rowCount();
@@ -122,10 +122,10 @@ class strippenkaartModel extends Database
         $connection = $this->connect();
         // Prepare the SQL query
         $stmt = $connection->prepare("
-        SELECT strippenkaart.id, strippenkaart.aantal_lessen, strippenkaart.resterende_lessen, leerling.naam AS student_name
-        FROM strippenkaart 
-        LEFT JOIN leerling ON strippenkaart.student_id = leerling.id 
-        WHERE strippenkaart.id = ?
+        SELECT stampcard.id, stampcard.amount_lessons, stampcard.remaining_lessons, student.name AS student_name
+        FROM stampcard 
+        LEFT JOIN student ON stampcard.student_id = student.id 
+        WHERE stampcard.id = ?
         ");
         // Execute the query
         $stmt->execute([$id]);
@@ -133,15 +133,15 @@ class strippenkaartModel extends Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     // edit strip card
-    protected function edit($aantal_lessen, $resterende_lessen, $id)
+    protected function edit($amount_lessons, $remaining_lessons, $id)
     {
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query 
-        $stmt = $connection->prepare("UPDATE strippenkaart SET aantal_lessen = ?, resterende_lessen = ? WHERE id = ?");
+        $stmt = $connection->prepare("UPDATE stampcard SET amount_lessons = ?, remaining_lessons = ? WHERE id = ?");
 
         // Execute the query
-        $stmt->execute([$aantal_lessen, $resterende_lessen, $id]);
+        $stmt->execute([$amount_lessons, $remaining_lessons, $id]);
 
         if ($stmt->rowCount() > 0) {
             // Update succesvol

@@ -2,7 +2,7 @@
     RewriteEngine On
     RewriteBase /models/
 
-    RewriteRule ^ - [R=405,L]
+    RewriteRule ^ - [R=405]
 
     ErrorDocument 405 /DriverSmart/405.html
 </IfModule>

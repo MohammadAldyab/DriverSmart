@@ -62,28 +62,29 @@ if (isset($_SESSION['email'])) {
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link <?php echo isActive('/DriverSmart/views/strippenkaart/index.php'); ?>" href="/DriverSmart/views/strippenkaart/index.php" role="button">
-                                        Strippenkaart
+                                        stampcard
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link <?php echo isActive('/DriverSmart/views/lessbloack/index.php'); ?>" href="/DriverSmart/views/lessbloack/index.php" role="button">
-                                        lesblok
+                                        lessonblock
                                     </a>
                                 </li>
                             <?php endif; ?>
-
-                            <!-- Always show this link -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link <?php echo isActive('/DriverSmart/views/contact/contact_form.php'); ?>" href="/DriverSmart/views/contact/contact_form.php" role="button">
-                                    Contact
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
                 <?php endif; ?>
 
-
+                <!-- Always show this link -->
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link <?php echo isActive('/DriverSmart/views/contact/contact_form.php'); ?>" href="/DriverSmart/views/contact/contact_form.php" role="button">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
@@ -92,9 +93,7 @@ if (isset($_SESSION['email'])) {
                                 <?php echo $loginLogoutText; ?>
                             </a>
                             <ul class="dropdown-menu">
-
-                                <li><a class="dropdown-item" href="/DriverSmart/views/loginsysteem/logout.php">Logout</a></li>
-
+                                <li><a class="dropdown-item" href="/DriverSmart/views/loginsysteem/logout.php"> <?php echo $loginLogoutText; ?></a></li>
                             </ul>
                         </li>
                     </ul>
