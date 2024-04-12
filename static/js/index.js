@@ -21,27 +21,27 @@ function myFunction() {
 function validatePassword() {
     var password = document.getElementById("password").value;
 
-    // Controleer of het wachtwoord minstens 8 karakters lang is
+    // Controleer of het password minstens 8 karakters lang is
     if (password.length < 8) {
-        alert("Wachtwoord moet minimaal 8 karakters lang zijn.");
+        alert("password moet minimaal 8 karakters lang zijn.");
         return false;
     }
 
-    // Controleer of het wachtwoord minstens 1 hoofdletter bevat
+    // Controleer of het password minstens 1 hoofdletter bevat
     if (!/[A-Z]/.test(password)) {
-        alert("Wachtwoord moet minstens 1 hoofdletter bevatten.");
+        alert("password moet minstens 1 hoofdletter bevatten.");
         return false;
     }
 
-    // Controleer of het wachtwoord minstens 1 kleine letter bevat
+    // Controleer of het password minstens 1 kleine letter bevat
     if (!/[a-z]/.test(password)) {
-        alert("Wachtwoord moet minstens 1 kleine letter bevatten.");
+        alert("password moet minstens 1 kleine letter bevatten.");
         return false;
     }
 
-    // Controleer of het wachtwoord minstens 1 speciaal karakter bevat
+    // Controleer of het password minstens 1 speciaal karakter bevat
     if (!/[\W_]/.test(password)) {
-        alert("Wachtwoord moet minstens 1 speciaal karakter bevatten.");
+        alert("password moet minstens 1 speciaal karakter bevatten.");
         return false;
     }
 
